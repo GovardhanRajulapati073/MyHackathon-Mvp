@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurora Wireless Headphones – Product Details</title>
+  <meta name="description" content="Single-page product details for a sample e‑commerce item including name, price, image, features, and description." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0e13;
+      --card:#121822;
+      --muted:#aab2c0;
+      --text:#e8edf7;
+      --accent:#6ee7b7;
+      --accent-strong:#34d399;
+      --danger:#ef4444;
+      --ring: 0 0 0 3px rgba(110,231,183,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, #18202c 0%, rgba(24,32,44,0) 60%),
+                  radial-gradient(1200px 600px at 90% -10%, #0f1720 0%, rgba(15,23,32,0) 60%),
+                  var(--bg);
+      line-height:1.5;
+    }
+    header{
+      position: sticky; top:0; z-index:20;
+      backdrop-filter: blur(8px);
+      background: linear-gradient(to bottom, rgba(11,14,19,.9), rgba(11,14,19,.6));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:16px 20px;}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.5px}
+    .brand .logo{
+      width:36px;height:36px;border-radius:10px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg, #34d399, #22d3ee);
+      color:#0b0e13; font-weight:800;
+      box-shadow: 0 10px 30px rgba(52,211,153,.35);
+    }
+
+    main{padding:32px 20px}
+    .product{
+      display:grid; gap:28px; align-items:start;
+      grid-template-columns: 1.1fr 1fr;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:24px; padding:24px;
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+    @media (max-width: 880px){
+      .product{grid-template-columns: 1fr}
+    }
+
+    /* Media */
+    .media{
+      display:grid; gap:14px;
+    }
+    .media figure{
+      margin:0; border-radius:18px; overflow:hidden; background:#0f1420;
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .media img{width:100%; display:block; aspect-ratio: 4/3; object-fit: cover}
+
+    .thumbs{display:grid; grid-template-columns: repeat(4,1fr); gap:10px}
+    .thumbs img{
+      width:100%; aspect-ratio:1/1; object-fit: cover; border-radius:12px; cursor:pointer;
+      border:1px solid rgba(255,255,255,.08); opacity:.85; transition:opacity .2s, transform .12s;
+    }
+    .thumbs img:hover{opacity:1; transform: translateY(-1px)}
+
+    /* Info */
+    .info{display:grid; gap:18px}
+    .title{font-size: clamp(1.4rem, 1.2rem + 1vw, 2.1rem); margin:0}
+    .rating{display:flex; gap:8px; align-items:center; color:var(--muted); font-size:.95rem}
+    .rating .stars{letter-spacing:.2ch}
+
+    .priceRow{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+    .price{font-size: clamp(1.6rem, 1.2rem + 1vw, 2rem); font-weight:800}
+    .mrp{color:var(--muted); text-decoration: line-through}
+    .badge{font-size:.8rem; padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12)}
+    .badge.save{border-color: rgba(110,231,183,.6); color: var(--accent)}
+
+    .desc{color:var(--muted)}
+
+    .features{display:grid; grid-template-columns: 1fr 1fr; gap:10px 16px; padding:0; margin:0; list-style:none}
+    .features li{display:flex; gap:10px; align-items:flex-start}
+    .features .dot{margin-top:7px; width:8px; height:8px; border-radius:50%; background:var(--accent)}
+
+    .controls{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .qty{display:flex; align-items:center; gap:8px; background:#0f1420; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:6px}
+    .qty button{all:unset; width:32px; height:32px; display:grid; place-items:center; cursor:pointer}
+    .qty input{width:44px; text-align:center; background:transparent; border:0; color:var(--text); font:inherit}
+
+    .btn{appearance:none; border:0; padding:12px 18px; border-radius:12px; font-weight:700; cursor:pointer}
+    .btn.primary{background:linear-gradient(135deg, var(--accent), var(--accent-strong)); color:#0b0e13; box-shadow:0 10px 30px rgba(52,211,153,.35)}
+    .btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.16)}
+    .btn:focus-visible{outline:none; box-shadow: var(--ring)}
+
+    .meta{display:flex; gap:14px; color:var(--muted); font-size:.92rem}
+    .meta span{display:flex; gap:6px; align-items:center}
+
+    footer{color:var(--muted); padding:40px 20px; text-align:center}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap" aria-label="Site Header">
+      <div class="brand" aria-label="Brand">
+        <div class="logo" aria-hidden="true">A</div>
+        <div>aurora<span style="opacity:.75">.store</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="product" itemscope itemtype="https://schema.org/Product">
+      <!-- Media / Gallery -->
+      <section class="media" aria-label="Product gallery">
+        <figure>
+          <img id="mainImg" src="https://images.unsplash.com/photo-1518443881221-85cbf9f7fd54?q=80&w=1600&auto=format&fit=crop" alt="Aurora Wireless Headphones in matte black on a desk" itemprop="image" />
+        </figure>
+        <div class="thumbs" aria-label="More product images">
+          <img src="https://images.unsplash.com/photo-1518443881221-85cbf9f7fd54?q=80&w=400&auto=format&fit=crop" alt="Front angle" data-large="https://images.unsplash.com/photo-1518443881221-85cbf9f7fd54?q=80&w=1600&auto=format&fit=crop" />
+          <img src="https://images.unsplash.com/photo-1518441902119-103a1c8d6c08?q=80&w=400&auto=format&fit=crop" alt="Folded view" data-large="https://images.unsplash.com/photo-1518441902119-103a1c8d6c08?q=80&w=1600&auto=format&fit=crop" />
+          <img src="https://images.unsplash.com/photo-1513863329729-ebef6e54c333?q=80&w=400&auto=format&fit=crop" alt="Cushioned earcups" data-large="https://images.unsplash.com/photo-1513863329729-ebef6e54c333?q=80&w=1600&auto=format&fit=crop" />
+          <img src="https://images.unsplash.com/photo-1555086156-8b05fbd5f1c5?q=80&w=400&auto=format&fit=crop" alt="On a backpack" data-large="https://images.unsplash.com/photo-1555086156-8b05fbd5f1c5?q=80&w=1600&auto=format&fit=crop" />
+        </div>
+      </section>
+
+      <!-- Product Info -->
+      <section class="info" aria-label="Product information">
+        <h1 class="title" itemprop="name">Aurora Wireless Headphones</h1>
+        <div class="rating" aria-label="Product rating">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span>4.8 (1,247 reviews)</span>
+        </div>
+
+        <div class="priceRow">
+          <div class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="INR" />
+            <span class="mrp" aria-label="Original price">₹7,999</span>
+            <strong itemprop="price" content="5499">₹5,499</strong>
+            <link itemprop="availability" href="https://schema.org/InStock" />
+          </div>
+          <span class="badge save">Save 31%</span>
+          <span class="badge" title="Inclusive of all taxes">GST Included</span>
+        </div>
+
+        <p class="desc" itemprop="description">
+          Immerse yourself in rich, balanced sound with active noise cancellation and 50‑hour battery life. Designed for comfort during long study sessions, commutes, and workouts — with quick charge and multi‑device pairing.
+        </p>
+
+        <ul class="features" aria-label="Key features">
+          <li><span class="dot" aria-hidden="true"></span> Bluetooth 5.3 with multipoint pairing</li>
+          <li><span class="dot" aria-hidden="true"></span> Hybrid Active Noise Cancellation (ANC)</li>
+          <li><span class="dot" aria-hidden="true"></span> Up to 50 hours of playback (ANC off)</li>
+          <li><span class="dot" aria-hidden="true"></span> USB‑C fast charge: 10 min = 5 hrs</li>
+          <li><span class="dot" aria-hidden="true"></span> Comfort‑fit memory foam earcups</li>
+          <li><span class="dot" aria-hidden="true"></span> Foldable design + travel pouch</li>
+        </ul>
+
+        <div class="controls" aria-label="Purchase controls">
+          <div class="qty" aria-label="Quantity selector">
+            <button type="button" aria-label="Decrease quantity" id="minus">−</button>
+            <input type="number" aria-label="Quantity" id="qty" value="1" min="1" />
+            <button type="button" aria-label="Increase quantity" id="plus">＋</button>
+          </div>
+          <button class="btn primary" id="addToCart">Add to Cart</button>
+          <button class="btn ghost" id="buyNow">Buy Now</button>
+        </div>
+
+        <div class="meta" aria-label="Product meta">
+          <span>🚚 Free delivery</span>
+          <span>🔁 7‑day replacement</span>
+          <span>🛡️ 1‑year warranty</span>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Aurora Store · Demo product page
+    <span class="sr-only">This is a sample single‑page e‑commerce product details template.</span>
+  </footer>
+
+  <script>
+    // Simple image gallery swap
+    document.querySelectorAll('.thumbs img').forEach(img => {
+      img.addEventListener('click', () => {
+        const large = img.getAttribute('data-large');
+        const main = document.getElementById('mainImg');
+        main.src = large || img.src;
+        main.alt = img.alt;
+      })
+    });
+
+    // Quantity controls
+    const qty = document.getElementById('qty');
+    document.getElementById('minus').addEventListener('click', () => {
+      qty.value = Math.max(1, parseInt(qty.value||'1', 10) - 1);
+    });
+    document.getElementById('plus').addEventListener('click', () => {
+      qty.value = Math.max(1, parseInt(qty.value||'1', 10) + 1);
+    });
+
+    // Demo actions
+    const toast = (msg) => {
+      const el = document.createElement('div');
+      el.textContent = msg;
+      el.setAttribute('role','status');
+      el.style.position = 'fixed';
+      el.style.right = '20px';
+      el.style.bottom = '20px';
+      el.style.padding = '12px 14px';
+      el.style.borderRadius = '12px';
+      el.style.background = 'linear-gradient(135deg, var(--accent), var(--accent-strong))';
+      el.style.color = '#0b0e13';
+      el.style.fontWeight = '800';
+      el.style.boxShadow = '0 10px 30px rgba(52,211,153,.35)';
+      document.body.appendChild(el);
+      setTimeout(()=> el.remove(), 1800);
+    };
+
+    document.getElementById('addToCart').addEventListener('click', () => {
+      toast(`Added ${qty.value} to cart • Aurora Wireless Headphones`);
+    });
+    document.getElementById('buyNow').addEventListener('click', () => {
+      toast('Proceeding to checkout (demo)');
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
